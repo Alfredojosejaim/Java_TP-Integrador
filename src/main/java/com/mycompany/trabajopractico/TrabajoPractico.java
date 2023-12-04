@@ -33,23 +33,28 @@ public class TrabajoPractico {
             tecnico2.setEspecialidadSistema(SistemaOperativo.LINUX_UBUNTU);
             tecnico2.setEspecialidadSoporte(SoporteOperativo.TANGO);
 
+            // Persist Tecnico entities first
+            em.persist(tecnico1);
+            em.persist(tecnico2);
+
+            // Persist Problema entities next
+            em.persist(problema1);
+            em.persist(problema2);
+
+            // Then persist Incidente entities
             tecnico1.addIncidente(incidente1);
             tecnico2.addIncidente(incidente2);
-
             incidente1.setProblema(problema1);
             incidente2.setProblema(problema2);
+            em.persist(incidente1);
+            em.persist(incidente2);
 
             cliente1.addIncidente(incidente1);
             cliente2.addIncidente(incidente2);
 
+            // Then persist the rest
             em.persist(cliente1);
             em.persist(cliente2);
-            em.persist(incidente1);
-            em.persist(incidente2);
-            em.persist(problema1);
-            em.persist(problema2);
-            em.persist(tecnico1);
-            em.persist(tecnico2);
 
             em.getTransaction().commit();
         } catch (Exception e) {
