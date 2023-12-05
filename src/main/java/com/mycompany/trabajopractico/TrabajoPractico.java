@@ -1,3 +1,5 @@
+// Ejecutar con JDK 19
+
 package com.mycompany.trabajopractico;
 
 import java.time.LocalTime;
